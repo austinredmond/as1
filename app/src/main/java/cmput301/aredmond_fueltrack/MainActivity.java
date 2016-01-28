@@ -75,6 +75,7 @@ public class MainActivity extends Activity {
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             throw new RuntimeException();
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             throw new RuntimeException();
