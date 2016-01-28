@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class MainActivity extends Activity {
 
     private static final String FILENAME = "file.sav";
-    private ArrayList<LogEntry> logEntries = new ArrayList<LogEntry>();
+    private LogEntries logEntries = new LogEntries();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +50,12 @@ public class MainActivity extends Activity {
             Gson gson = new Gson();
 
             //Took from https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html Jan-20-2016
-            Type listType = new TypeToken<ArrayList<LogEntry>>() {}.getType();
+            Type listType = new TypeToken<LogEntries>() {}.getType();
             logEntries = gson.fromJson(in, listType);
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-            logEntries = new ArrayList<LogEntry>();
+            logEntries = new LogEntries();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             throw new RuntimeException();
