@@ -1,29 +1,35 @@
 package cmput301.aredmond_fueltrack;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 /**
- * Created by austinr on 26/01/16.
+ * Created by austinr on 01/02/16.
  */
-public class LogEntry {
+public class LogEntry implements Serializable{
 
-   private Date date; //date (entered, yyyy-mm-dd format, e.g., 2016-01-18)
-   private String station;// station (entered, textual, e.g., Costco)
-   private Double odometer;// odometer reading (entered in km, numeric to 1 decimal place)
-   private Fuel fuel;//grade, amount, and cost
+    private String date; //date (entered, yyyy-mm-dd format, e.g., 2016-01-18)
+    private String station;// station (entered, textual, e.g., Costco)
+    private double odometer;// odometer reading (entered in km, numeric to 1 decimal place)
+    private String grade;//fuel grade (entered, textual, e.g., regular)
+    private double amount;//fuel amount (entered in L, numeric to 3 decimal places)
+    private double unitCost;//fuel unit cost (entered in cents per L, numeric to 1 decimal place)
 
-    public LogEntry(Date date, String station, Double odometer, Fuel fuel) {
+    public LogEntry(String date, String station, double odometer, String grade, double amount, double unitCost) {
         this.date = date;
         this.station = station;
         this.odometer = odometer;
-        this.fuel = fuel;
+        this.grade = grade;
+        this.amount = amount;
+        this.unitCost = unitCost;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -35,19 +41,53 @@ public class LogEntry {
         this.station = station;
     }
 
-    public Double getOdometer() {
+    public double getOdometer() {
         return odometer;
     }
 
-    public void setOdometer(Double odometer) {
+    public void setOdometer(double odometer) {
         this.odometer = odometer;
     }
 
-    public Fuel getFuel() {
-        return fuel;
+    public String getGrade() {
+        return grade;
     }
 
-    public void setFuel(Fuel fuel) {
-        this.fuel = fuel;
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public double getUnitCost() {
+        return unitCost;
+    }
+
+    public void setUnitCost(double unitCost) {
+        this.unitCost = unitCost;
+    }
+
+    public double getCost(){
+        return this.amount * this.unitCost / 100.0;
+    }
+
+    public String toString(){
+        DecimalFormat Precision1 = new DecimalFormat("#.0");
+        DecimalFormat Precision2 = new DecimalFormat("#.00");
+        DecimalFormat Precision3 = new DecimalFormat("#.000");
+        Precision1.setRoundingMode(RoundingMode.HALF_UP);
+        Precision2.setRoundingMode(RoundingMode.HALF_UP);
+        Precision3.setRoundingMode(RoundingMode.HALF_UP);
+
+        return "Date: " + this.date + "\n" + "Station: " + this.station + "\n" +
+                "Odometer reading: " + Precision1.format(this.odometer) + " km" + "\n" + "Fuel grade: " + this.grade + "\n" +
+                "Fuel amount: " + Precision3.format(this.amount) + " L"+  "\n" + "Fuel unit cost: " + Precision1.format(this.getUnitCost())  +
+                " cents per L" + "\n" + "Fuel cost: " + Precision2.format(this.getCost()) + " dollars";
     }
 }

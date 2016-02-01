@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">aredmond-FuelTrack</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_AddEdit">AddEntryActivity</string>
+    <string name="addLogEntryButton">Add Log Entry</string>
+    <string name="date_hint">date (entered, yyyy-mm-dd format, e.g., 2016-01-18)</string>
+    <string name="station_hint">station (entered, textual, e.g., Costco)</string>
+    <string name="odometer_hint">odometer reading (entered in km, numeric to 1 decimal place)</string>
+    <string name="grade_hint">fuel grade (entered, textual, e.g., regular)</string>
+    <string name="amount_hint">fuel amount (entered in L, numeric to 3 decimal places)</string>
+    <string name="unit_cost_hint">fuel unit cost (entered in cents per L, numeric to 1 decimal place)</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="AddEditEntryTitle">Add/Edit Entry</string>
 </resources>
