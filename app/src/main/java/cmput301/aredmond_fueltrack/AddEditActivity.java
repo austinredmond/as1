@@ -41,9 +41,11 @@ public class AddEditActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit);
 
+        //Two buttons are used to collect user feedback in the add edit activity.
         Button submitButton = (Button) findViewById(R.id.submit);
         Button cancelButton = (Button) findViewById(R.id.cancel);
 
+        //These six edit texts collect all the information needed for the log entry class.
         dateText = (EditText) findViewById(R.id.addDate);
         stationText = (EditText) findViewById(R.id.addStation);
         odometerText = (EditText) findViewById(R.id.addOdometer);
@@ -51,7 +53,10 @@ public class AddEditActivity extends AppCompatActivity implements Serializable {
         amountText = (EditText) findViewById(R.id.addAmount);
         unitCostText = (EditText) findViewById(R.id.addUnitCost);
 
-
+        //This checks whether or not the fields should be filled out.
+        //If a log entry is being edited then it will show the user the previous values for reference.
+        //The decimal format objects assure that the correct decimal precision is used for the double values.
+        //Otherwise fill the edit texts with text to signify what needs to be filled in.
         if((int)getIntent().getExtras().getSerializable("EnterCode") == EDIT) {
 
             String cDate = dateText.getText().toString();
@@ -87,6 +92,10 @@ public class AddEditActivity extends AppCompatActivity implements Serializable {
 
         }
 
+        //This listener waits for submit button to be pressed.
+        //It then checks if the values in the edit text feilds are valid.
+        //If they are, then a new log entry is constructed.
+        //A new intent is created and the log entry is passed back to the main activity
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +120,8 @@ public class AddEditActivity extends AppCompatActivity implements Serializable {
             }
         });
 
+        //This listener waits for the cancel button to be pressed.
+        //It causes the add edit activity to be exited.
         cancelButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -120,6 +131,11 @@ public class AddEditActivity extends AppCompatActivity implements Serializable {
         });
     }
 
+    //This checks whether the values inputted  are valid.
+    //For example the doubles must be larger than one and
+    //no value must be empty.
+    //Date must also be exactly ten characters long to match the specified format.
+    //The toast class is used to prompt the user to change the inputted values to correct ones.
     private boolean checkValid() {
         String cDate = dateText.getText().toString();
         String cStation = stationText.getText().toString();

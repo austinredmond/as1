@@ -7,8 +7,11 @@ import java.text.DecimalFormat;
 /**
  * Created by austinr on 01/02/16.
  */
+
+//Log Entry implements Serializable so that it can be passed from one activity to another.
 public class LogEntry implements Serializable{
 
+    //Log entries store six varaibles whihc hold all the information that the user needs.
     private String date; //date (entered, yyyy-mm-dd format, e.g., 2016-01-18)
     private String station;// station (entered, textual, e.g., Costco)
     private double odometer;// odometer reading (entered in km, numeric to 1 decimal place)
@@ -16,6 +19,7 @@ public class LogEntry implements Serializable{
     private double amount;//fuel amount (entered in L, numeric to 3 decimal places)
     private double unitCost;//fuel unit cost (entered in cents per L, numeric to 1 decimal place)
 
+    //Every variable gets initialized here.
     public LogEntry(String date, String station, double odometer, String grade, double amount, double unitCost) {
         this.date = date;
         this.station = station;
@@ -25,6 +29,7 @@ public class LogEntry implements Serializable{
         this.unitCost = unitCost;
     }
 
+    //These getter and setter methods are fairly standard.
     public String getDate() {
         return date;
     }
@@ -73,10 +78,12 @@ public class LogEntry implements Serializable{
         this.unitCost = unitCost;
     }
 
+    //getCost returns the cost in dollars by multiplying the amount by the unit cost.
     public double getCost(){
         return this.amount * this.unitCost / 100.0;
     }
 
+    //This allows the object to represented as a string in the list view.
     public String toString(){
         DecimalFormat Precision1 = new DecimalFormat("#.0");
         DecimalFormat Precision2 = new DecimalFormat("#.00");
